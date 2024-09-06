@@ -10,4 +10,4 @@
 
 ## Authors
 
-- Dillon ([@Dillon](https://github.com/dillonmemo))
+- Dillon Jang ([@Dillon](https://github.com/dillonmemo))

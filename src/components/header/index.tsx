@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { CountryOption, CountrySelect, HeaderWrapper, SidebarWrapper } from './styles'
+import { CountryOption, CountrySelect, HeaderWrapper, SidebarWrapper } from '@/styles/header'
 import { useRecoilValue } from 'recoil'
 import { themeModeState } from '@/recoil/theme-atom'
 import Link from 'next/link'

@@ -1,4 +1,4 @@
-import { Toggle } from './styles'
+import { Toggle } from '@/styles/header'
 import { useRecoilState } from 'recoil'
 import { themeModeState } from '@/recoil/theme-atom'
 import { useCallback } from 'react'
