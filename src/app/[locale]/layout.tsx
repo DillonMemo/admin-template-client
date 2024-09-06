@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import RootProvider from '@/providers'
 import Header from '@/components/header'
 import { headers } from 'next/headers'
+import { getCsrfToken } from 'next-auth/react'
 
 const pretendard = localFont({
   src: '../../font/PretendardVariable.woff2',
@@ -23,7 +24,8 @@ export default async function RootLayout({
   params: { locale: string }
 }>) {
   const pathname = headers().get('x-current-path')
-  console.log('path', pathname)
+  const csrfToken = await getCsrfToken()
+  console.log('path', { pathname, csrfToken })
   return (
     <html lang={locale} className={`${pretendard.variable}`}>
       <head></head>

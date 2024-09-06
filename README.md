@@ -11,3 +11,11 @@
 ## Authors
 
 - Dillon Jang ([@Dillon](https://github.com/dillonmemo))
+
+## Memo
+Remove memo before the project completion.
+
+```env
+NEXTAUTH_URL=http://localhost:3005
+```
+

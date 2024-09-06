@@ -1,9 +1,12 @@
 'use client'
 
+import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 
 export default function Home() {
   const t = useTranslations('HomePage')
+  const { data: session, status } = useSession()
+  console.log('✅', session, status)
 
   const getAPI = async () => {
     try {

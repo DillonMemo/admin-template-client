@@ -3,6 +3,7 @@
 import { Wrapper } from '@/styles/signin'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 
 interface SigninForm {
@@ -27,8 +28,8 @@ export default function SignInWrapper() {
     await signIn('credentials', {
       id: 'dillon',
       password: '1234',
-      redirect: false,
-      // callbackUrl: '/',
+      redirect: true,
+      callbackUrl: '/',
     })
   }
   return (
