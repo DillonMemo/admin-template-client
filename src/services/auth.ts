@@ -21,8 +21,9 @@ const combineCredentials = Credentials({
    */
   async authorize(credentials) {
     try {
-      console.log('2️⃣', credentials)
       if (credentials?.id && credentials?.password) {
+        if (credentials.id !== 'dummy' && credentials.password !== 'dummy') return null
+
         // Add you backend code here
         // let loginRes = await backendLogin(credentials.id, credentials.password)
 
@@ -30,9 +31,8 @@ const combineCredentials = Credentials({
           success: true,
           data: {
             user: {
-              ID: 'Dillon',
+              ID: credentials.id,
               NAME: 'Jang Dillon',
-              EMAIL: 'dillon@sevenlinelabs.com',
             },
           },
         }
@@ -46,7 +46,6 @@ const combineCredentials = Credentials({
         const user = {
           id: loginRes.data.user.ID ?? '',
           name: loginRes.data.user.NAME ?? '',
-          email: loginRes.data.user.EMAIL ?? '',
         }
 
         return user
@@ -64,7 +63,11 @@ const authOptions: AuthOptions = {
   providers: [combineCredentials],
   callbacks: {
     jwt({ token, user }) {
-      return { ...token, ...user }
+      if (user) {
+        token.id = user.id
+      }
+
+      return token
     },
     async session({ session, token }) {
       session.user = token

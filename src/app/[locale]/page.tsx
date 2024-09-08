@@ -1,12 +1,14 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 
 export default function Home() {
   const t = useTranslations('HomePage')
   const { data: session, status } = useSession()
   console.log('✅', session, status)
+
+  if (status === 'unauthenticated') window.location.href = `${window.location.origin}/signin`
 
   const getAPI = async () => {
     try {
@@ -25,6 +27,9 @@ export default function Home() {
       <div>{t('title')}</div>
       <button type="button" onClick={getAPI}>
         API CLICK
+      </button>
+      <button type="button" onClick={() => signOut()}>
+        Sign Out
       </button>
     </main>
   )

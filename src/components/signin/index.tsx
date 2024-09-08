@@ -1,6 +1,7 @@
 'use client'
 
 import { Wrapper } from '@/styles/signin'
+import { Button, Input } from 'antd'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -23,11 +24,9 @@ export default function SignInWrapper() {
   const onSubmit = async () => {
     const { id, password } = getValues()
 
-    console.log('1️⃣ submit', id, password)
-    debugger
     await signIn('credentials', {
-      id: 'dillon',
-      password: '1234',
+      id,
+      password,
       redirect: true,
       callbackUrl: '/',
     })
@@ -49,27 +48,59 @@ export default function SignInWrapper() {
             <p>PW : dummy</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-              render={({ field }) => (
-                <label>
-                  id
-                  <input {...field} name="id" type="text" />
-                </label>
+            <div className="form-item">
+              <div className="form-group">
+                <Controller
+                  render={({ field }) => (
+                    <Input {...field} className="input" placeholder="Enter your ID" />
+                  )}
+                  control={control}
+                  name="id"
+                  rules={{
+                    required: 'ID 입력은 필수입니다',
+                    pattern: {
+                      value: /^[a-zA-Z0-9!@#~%^&*(),]+$/,
+                      // /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // 이메일 정규식
+                      message: 'ID 형식이 아닙니다',
+                    },
+                  }}
+                />
+              </div>
+              {errors.id?.message && (
+                <div className="form-message">
+                  <span>{errors.id.message}</span>
+                </div>
               )}
-              control={control}
-              name="id"
-            />
-            <Controller
-              render={({ field }) => (
-                <label>
-                  Password
-                  <input {...field} name="password" type="password" />
-                </label>
+            </div>
+            <div className="form-item">
+              <div className="form-group">
+                <Controller
+                  render={({ field }) => (
+                    <Input.Password {...field} className="input" placeholder="Password" />
+                  )}
+                  control={control}
+                  name="password"
+                  rules={{
+                    required: '비밀번호 입력은 필수입니다',
+                  }}
+                />
+              </div>
+              {errors.password?.message && (
+                <div className="form-message">
+                  <span>{errors.password.message}</span>
+                </div>
               )}
-              control={control}
-              name="password"
-            />
-            <button type="submit">Sign in</button>
+            </div>
+            <div className="form-item">
+              <Button
+                type="primary"
+                role="button"
+                htmlType="submit"
+                className="submit-button"
+                disabled={!isValid}>
+                Sign In
+              </Button>
+            </div>
           </form>
         </div>
       </div>
