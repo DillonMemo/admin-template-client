@@ -154,7 +154,7 @@ export const SidebarWrapper = styled.aside<{ theme: ThemeMode }>`
           }
 
           div.logo {
-            height: 100%;
+            height: 70%;
 
             ${lg} {
               display: none;
@@ -163,8 +163,8 @@ export const SidebarWrapper = styled.aside<{ theme: ThemeMode }>`
             display: inline;
             background: ${({ theme }) =>
               theme === 'light'
-                ? `url('/static/imgs/light-miracleplay-logo.png') no-repeat center/contain`
-                : `url('/static/imgs/dark-miracleplay-logo.png') no-repeat center/contain`};
+                ? `url('/imgs/logo.png') no-repeat center/contain`
+                : `url('/imgs/logo.png') no-repeat center/contain`};
 
             margin-left: 1.64rem;
 
@@ -575,9 +575,6 @@ export const HeaderWrapper = styled.header`
       }
       .img {
         img {
-          width: 2.25rem;
-          height: 2.25rem;
-
           border-radius: 5rem;
         }
       }
@@ -652,7 +649,7 @@ export const Toggle = styled.input`
   }
   &::before {
     content: '';
-    background: url('/static/svgs/sun.svg') no-repeat center/cover;
+    background: url('/svgs/sun.svg') no-repeat center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -673,7 +670,7 @@ export const Toggle = styled.input`
   }
   &:checked::before {
     content: '';
-    background: url('/static/svgs/moon.svg') no-repeat center/cover;
+    background: url('svgs/moon.svg') no-repeat center/cover;
     left: 2rem;
     display: flex;
     justify-content: center;

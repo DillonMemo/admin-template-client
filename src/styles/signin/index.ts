@@ -17,15 +17,13 @@ export const Wrapper = styled.div<{ theme: ThemeMode }>`
     left: 2rem;
 
     background: ${({ theme }) =>
-        theme === 'light'
-          ? `url('/static/imgs/light-miracleplay-logo.png')`
-          : `url('/static/imgs/dark-miracleplay-logo.png')`}
+        theme === 'light' ? `url('/imgs/logo.png')` : `url('/imgs/logo.png')`}
       no-repeat center/contain;
-    width: 7rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
 
     ${md} {
-      width: 5rem;
+      width: 2rem;
       height: 2rem;
     }
   }

@@ -9,18 +9,19 @@ import { Badge, Skeleton, Space } from 'antd'
 import useNetworkStatus from '@/hooks/useNetworkStatus'
 import HamburgerSvg from '@/icons/hamburger-svg'
 import { delay } from 'lodash'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import DarkModeToggle from './dark-mode-toggle'
 import { usePathname, useRouter } from '@/i18n/routing'
 import Image from 'next/image'
-import NoneProfileImage from '../../../static/imgs/none-profile.png'
 import { SkeletonStyle } from '@/styles/styles'
+import { signOut } from 'next-auth/react'
 
 export default function Header() {
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
   const { networkStatus } = useNetworkStatus()
+  const t = useTranslations()
 
   const themeMode = useRecoilValue(themeModeState)
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
@@ -103,9 +104,9 @@ export default function Header() {
         <div className="navbar-container">
           <ul className="nav">
             <li className="nav-item flex">
-              <button className="logout">
+              <button className="logout" onClick={() => signOut()}>
                 <span className="icon">→</span>
-                <span className="text">로그아웃</span>
+                <span className="text">{t('signOut')}</span>
               </button>
               <div className="nav-close" onClick={onNavigator(false)}>
                 ✕
@@ -134,13 +135,13 @@ export default function Header() {
                 <li className="nav-item">
                   <Link href="/" locale={locale}>
                     <span className="icon">→</span>
-                    <span className="text">관리</span>
+                    <span className="text">Management</span>
                   </Link>
                 </li>
                 <li className="nav-item">
                   <Link href="/" locale={locale}>
                     <span className="icon">→</span>
-                    <span className="text">추가</span>
+                    <span className="text">Additional</span>
                   </Link>
                 </li>
               </ul>
@@ -151,13 +152,13 @@ export default function Header() {
                 <li className="nav-item">
                   <Link href="#" locale={locale}>
                     <span className="icon">→</span>
-                    <span className="text">{locale === 'ko' ? '준비중' : 'Comming soon'}</span>
+                    <span className="text">{t('comingSoon')}</span>
                   </Link>
                 </li>
                 <li className="nav-item has-sub">
                   <Link href="#" locale={locale} onClick={onClickItem}>
                     <span className="icon">→</span>
-                    <span className="text">{locale === 'ko' ? '준비중' : 'Comming soon'}</span>
+                    <span className="text">{t('comingSoon')}</span>
                   </Link>
                   <ul className="menu-content">
                     <div className="collapse">
@@ -277,7 +278,7 @@ export default function Header() {
                   <span className="user-role">Member</span>
                 </div>
                 <div className="img">
-                  <Image src={NoneProfileImage} alt="profile" />
+                  <Image src={'/imgs/none-profile.png'} alt="profile" width={36} height={36} />
                 </div>
               </div>
             </div>

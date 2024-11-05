@@ -4,8 +4,8 @@ import { Wrapper } from '@/styles/signin'
 import { Button, Input } from 'antd'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
+import Image from 'next/image'
 
 interface SigninForm {
   id: string
@@ -35,16 +35,14 @@ export default function SignInWrapper() {
     <Wrapper>
       <Link href="/login" className="logo"></Link>
       <div className="content">
-        <div className="content-item">
-          <img src="/static/svgs/pixeltrue-data-analyse-1.svg" alt="이미지가 들어갑니다." />
-        </div>
+        <div className="content-item">이미지가 들어갑니다.</div>
       </div>
       <div className="wrapper">
         <div className="container">
           <h2 style={{ marginBottom: '2.5rem' }}>Welcom to MiraclePlay CMS 👋</h2>
           <h4>Dummy Site</h4>
           <div style={{ marginBottom: '1.5rem' }}>
-            <p>ID : dummy@test.com</p>
+            <p>ID : dummy</p>
             <p>PW : dummy</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,6 +1,8 @@
 {
-    "HomePage": {
-        "title": "헬로 월드!",
-        "about": "about 페이지 바로가기"
-    }
+  "signOut": "로그아웃",
+  "comingSoon": "준비중",
+  "HomePage": {
+    "title": "헬로 월드!",
+    "about": "about 페이지 바로가기"
+  }
 }
